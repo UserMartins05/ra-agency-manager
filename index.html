@@ -1,105 +1,175 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0d12">
-<meta name="description" content="Central de operações da Rômulo Azevedo — AI Marketing Agency">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>RA Agency Manager</title>
 <style>
-:root{color-scheme:dark;--bg:#0b0d12;--panel:#151923;--panel2:#1d2330;--line:#293243;--txt:#f4f6fa;--muted:#9aa4b2;--blue:#4da3ff;--gold:#ffc266}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:82px}
-header{padding:22px 18px 15px;background:linear-gradient(140deg,#151e2c,#0b0d12 75%);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:3}
-.brand{font-size:11px;letter-spacing:2px;color:var(--blue);font-weight:800}.headrow{display:flex;justify-content:space-between;align-items:center;margin-top:6px}h1{font-size:23px;margin:0;font-weight:800}.sub{color:var(--muted);font-size:12px;margin-top:4px}
-main{padding:18px;max-width:760px;margin:auto}.screen{display:none}.screen.active{display:block}.section-title{font-size:21px;font-weight:800;margin:4px 0 4px}.hint{color:var(--muted);font-size:12px;margin:0 0 16px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.metric,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}.metric b{display:block;font-size:23px}.metric span{font-size:10px;color:var(--muted)}
-.card h3{font-size:15px;margin:0 0 8px}.card p{color:var(--muted);font-size:13px;line-height:1.45;margin:5px 0}.status{color:var(--gold)!important;font-size:11px!important;font-weight:700}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.pill{font-size:10px;padding:5px 8px;border-radius:99px;background:#30291d;color:var(--gold);white-space:nowrap}
-.steps{display:flex;gap:10px;align-items:center;margin:12px 0}.num{width:30px;height:30px;border-radius:50%;background:var(--panel2);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:800;flex-shrink:0}
-button,.btn{border:0;border-radius:12px;padding:12px 14px;background:var(--blue);color:#06111f;font-weight:800;font-size:13px;cursor:pointer}
-button.secondary{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}button.danger{background:#49252a;color:#ffd9dd}
-input,textarea,select{width:100%;background:#0e121a;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px;font:14px system-ui;margin:5px 0 12px}
-label{font-size:12px;color:var(--muted)}.form-actions{display:flex;gap:8px;flex-wrap:wrap}
-nav{position:fixed;bottom:0;left:0;right:0;background:#121722;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px calc(8px + env(safe-area-inset-bottom));z-index:5}
-nav button{background:transparent;color:var(--muted);padding:7px 5px;font-size:10px;flex:1;border-radius:9px}nav button.active{color:var(--blue);background:#1b2a3d}
-nav span{display:block;font-size:18px;margin-bottom:2px}
-.empty{color:var(--muted);text-align:center;padding:20px;font-size:13px}
-footer{text-align:center;color:#657080;font-size:10px;padding:16px}
+*{box-sizing:border-box}
+body{margin:0;background:#0b0d12;color:#f4f6fa;font-family:Arial,sans-serif;padding:20px 16px 90px}
+header{padding:15px 0;border-bottom:1px solid #293243}
+small{color:#4da3ff;font-weight:bold;letter-spacing:2px}
+h1{font-size:24px;margin:9px 0}
+p{color:#9aa4b2;font-size:13px;line-height:1.5}
+nav{position:fixed;bottom:0;left:0;right:0;background:#151923;display:flex;justify-content:space-around;padding:12px 3px}
+nav button{background:transparent;color:#9aa4b2;border:0;font-size:11px;padding:8px}
+nav button.active{color:#4da3ff}
+section{display:none}
+section.active{display:block}
+.card{background:#151923;border:1px solid #293243;border-radius:15px;padding:16px;margin:14px 0}
+h2{font-size:19px}
+h3{font-size:15px;margin:4px 0 10px}
+.status{color:#ffc266;font-weight:bold;font-size:11px}
+.metric{display:inline-block;background:#151923;padding:13px;border-radius:12px;margin:4px;width:29%;vertical-align:top}
+.metric b{display:block;font-size:22px}
+.metric span{font-size:10px;color:#9aa4b2}
+input,select{width:100%;padding:12px;margin:7px 0 12px;background:#0b0d12;color:white;border:1px solid #293243;border-radius:9px}
+button.action{background:#4da3ff;color:#06111f;padding:12px;border:0;border-radius:9px;font-weight:bold}
+button.secondary{background:#293243;color:white;padding:10px;border:0;border-radius:9px}
+label{font-size:12px;color:#9aa4b2}
+.item{padding:12px 0;border-bottom:1px solid #293243}
 </style>
 </head>
 <body>
-<header><div class="brand">RÔMULO AZEVEDO • AI MARKETING AGENCY</div><div class="headrow"><h1>RA Agency Manager</h1><span class="pill">MVP 0.2</span></div><div class="sub">Central de operações da agência</div></header>
-<main>
-<section id="home" class="screen active">
- <div class="section-title">Visão geral</div><p class="hint">Acompanhe a operação em um só lugar.</p>
- <div class="grid"><div class="metric"><b id="clientCount">01</b><span>CLIENTES</span></div><div class="metric"><b id="taskCount">00</b><span>CONTEÚDOS</span></div><div class="metric"><b id="pendingCount">01</b><span>PENDÊNCIAS</span></div></div>
- <div class="card"><div class="row"><h3>Projeto em destaque</h3><span class="pill">Piloto 001</span></div><h2 style="font-size:20px;margin:4px 0">Suely Confecções</h2><p class="status">BRIEFING PENDENTE</p><p>Dados comerciais e estratégicos ainda não informados. Preencha somente após receber as respostas da cliente.</p><button class="secondary" onclick="go('clients')">Abrir cliente</button></div>
- <div class="card"><h3>Fluxo de trabalho da agência</h3><div class="steps"><div class="num">01</div><div><b>Diretor Estratégico</b><p>Diagnóstico e planejamento</p></div></div><div class="steps"><div class="num">02</div><div><b>Produtor de Conteúdo</b><p>Roteiros, artes e calendário</p></div></div><div class="steps"><div class="num">03</div><div><b>Revisor de Qualidade</b><p>Auditoria e conferência</p></div></div><div class="steps"><div class="num">04</div><div><b>Diretor da agência</b><p>Aprovação final obrigatória</p></div></div></div>
- <div class="card"><h3>Regra principal</h3><p>Nenhum agente pode aprovar ou publicar conteúdo sem autorização explícita do diretor.</p></div>
+<header>
+<small>RÔMULO AZEVEDO • AI MARKETING AGENCY</small>
+<h1>RA Agency Manager</h1>
+<p>Central de operações da agência</p>
+</header>
+
+<section id="inicio" class="active">
+<h2>Visão geral</h2>
+<div class="metric"><b id="totalClientes">01</b><span>CLIENTES</span></div>
+<div class="metric"><b id="totalConteudos">00</b><span>CONTEÚDOS</span></div>
+<div class="metric"><b>01</b><span>PENDÊNCIAS</span></div>
+<div class="card">
+<h3>Projeto em destaque</h3>
+<h2>Suely Confecções</h2>
+<div class="status">BRIEFING PENDENTE</div>
+<p>Projeto-piloto 001. Informações comerciais aguardando confirmação da cliente.</p>
+<button class="secondary" onclick="abrir('clientes')">Ver cliente</button>
+</div>
+<div class="card">
+<h3>Fluxo de trabalho</h3>
+<p>01 — Diretor Estratégico</p>
+<p>02 — Produtor de Conteúdo</p>
+<p>03 — Revisor de Qualidade</p>
+<p>04 — Aprovação final do diretor</p>
+</div>
 </section>
-<section id="clients" class="screen">
- <div class="section-title">Clientes</div><p class="hint">Cadastro e informações operacionais.</p>
- <div id="clientsList"></div>
- <div class="card"><h3>Adicionar cliente</h3><label>Nome da empresa</label><input id="newClient" placeholder="Ex.: Empresa Modelo"><label>Contato ou observação (opcional)</label><input id="newContact" placeholder="Telefone ou informação"><button onclick="addClient()">Salvar cliente</button></div>
+
+<section id="clientes">
+<h2>Clientes</h2>
+<div id="listaClientes"></div>
+<div class="card">
+<h3>Novo cliente</h3>
+<label>Nome da empresa</label>
+<input id="nomeCliente" placeholder="Nome da empresa">
+<label>Contato ou observação</label>
+<input id="contatoCliente" placeholder="Opcional">
+<button class="action" onclick="adicionarCliente()">Cadastrar cliente</button>
+</div>
 </section>
-<section id="content" class="screen">
- <div class="section-title">Conteúdo</div><p class="hint">Organize ideias e acompanhe a produção.</p>
- <div id="contentList"></div>
- <div class="card"><h3>Novo item de conteúdo</h3><label>Cliente</label><select id="contentClient"></select><label>Título ou ideia</label><input id="contentTitle" placeholder="Ex.: Reels de apresentação"><label>Etapa</label><select id="contentStage"><option>Ideia</option><option>Em produção</option><option>Em revisão</option><option>Aguardando aprovação</option><option>Aprovado pelo diretor</option></select><button onclick="addContent()">Adicionar conteúdo</button></div>
- <div class="card"><p>Conteúdos aprovados continuam sujeitos à decisão final do diretor antes da publicação.</p></div>
+
+<section id="conteudo">
+<h2>Gestão de conteúdo</h2>
+<div id="listaConteudos"></div>
+<div class="card">
+<h3>Adicionar conteúdo</h3>
+<label>Cliente</label>
+<select id="clienteConteudo"></select>
+<label>Nome da ideia ou publicação</label>
+<input id="nomeConteudo" placeholder="Ex.: Reels de apresentação">
+<label>Etapa</label>
+<select id="etapaConteudo">
+<option>Ideia</option>
+<option>Em produção</option>
+<option>Em revisão</option>
+<option>Aguardando aprovação</option>
+<option>Aprovado pelo diretor</option>
+</select>
+<button class="action" onclick="adicionarConteudo()">Adicionar</button>
+</div>
 </section>
-<section id="agents" class="screen">
- <div class="section-title">Agentes de IA</div><p class="hint">Equipe operacional definida para a agência.</p>
- <div class="card"><span class="brand">AGENTE 00</span><h3>Central de Comando</h3><p>Coordena clientes, projetos, prioridades e departamentos.</p><span class="pill">Estrutura cadastrada</span></div>
- <div class="card"><span class="brand">AGENTE 01</span><h3>Diretor Estratégico</h3><p>Diagnóstico, posicionamento, estratégia e planejamento.</p><span class="pill">Estrutura cadastrada</span></div>
- <div class="card"><span class="brand">AGENTE 02</span><h3>Produtor de Conteúdo</h3><p>Calendários, Reels, roteiros, legendas e copy.</p><span class="pill">Estrutura cadastrada</span></div>
- <div class="card"><span class="brand">AGENTE 03</span><h3>Revisor de Qualidade</h3><p>Audita materiais, identidade visual e consistência das informações.</p><span class="pill">Estrutura cadastrada</span></div>
- <div class="card"><p>Os agentes ainda não estão conectados a serviços de IA. Esta tela organiza suas funções e será integrada posteriormente.</p></div>
+
+<section id="agentes">
+<h2>Agentes de IA</h2>
+<div class="card"><h3>Agente 00 — Central de Comando</h3><p>Coordena a agência e seus projetos.</p></div>
+<div class="card"><h3>Agente 01 — Diretor Estratégico</h3><p>Diagnóstico, posicionamento e planejamento.</p></div>
+<div class="card"><h3>Agente 02 — Produtor de Conteúdo</h3><p>Calendários, roteiros, Reels e legendas.</p></div>
+<div class="card"><h3>Agente 03 — Revisor de Qualidade</h3><p>Revisa materiais, identidade e informações.</p></div>
+<p>Os agentes ainda serão conectados aos serviços de IA.</p>
 </section>
-<section id="approvals" class="screen">
- <div class="section-title">Aprovações</div><p class="hint">Controle final sob responsabilidade do diretor.</p>
- <div id="approvalList"></div>
- <div class="card"><h3>Política de aprovação</h3><p>Os agentes podem produzir e revisar. Somente o diretor da agência pode aprovar a versão final e autorizar publicação.</p></div>
+
+<section id="aprovacoes">
+<h2>Central de aprovações</h2>
+<div id="listaAprovacoes"></div>
+<div class="card">
+<h3>Regra da agência</h3>
+<p>Nenhum conteúdo pode ser publicado sem aprovação explícita do diretor.</p>
+</div>
 </section>
-<section id="settings" class="screen">
- <div class="section-title">Configurações</div><p class="hint">Dados deste MVP são guardados neste navegador.</p>
- <div class="card"><h3>Armazenamento</h3><p>Clientes e conteúdos são salvos localmente neste dispositivo. Limpar os dados do navegador pode apagá-los. Ainda não existe sincronização ou cópia de segurança na nuvem.</p><button class="secondary" onclick="exportData()">Exportar backup JSON</button></div>
- <div class="card"><h3>Sobre o projeto</h3><p>RA Agency Manager • MVP 0.2 • PWA Android</p><p>Desenvolvido para Rômulo Azevedo — AI Marketing Agency.</p></div>
-</section>
-<footer>RA AGENCY MANAGER • CONTROLE ESTRATÉGICO DA AGÊNCIA</footer>
-</main>
-<nav>
-<button class="active" data-page="home" onclick="go('home')"><span>⌂</span>Início</button>
-<button data-page="clients" onclick="go('clients')"><span>♙</span>Clientes</button>
-<button data-page="content" onclick="go('content')"><span>▦</span>Conteúdo</button>
-<button data-page="agents" onclick="go('agents')"><span>✧</span>Agentes</button>
-<button data-page="approvals" onclick="go('approvals')"><span>✓</span>Aprovações</button>
-</nav>
+
 <script>
-const initialClients=[{id:1,name:"Suely Confecções",contact:"Projeto-piloto 001 • Briefing pendente",briefing:"Pendente"}];
-let clients=JSON.parse(localStorage.getItem("ra_clients")||"null")||initialClients;
-let contents=JSON.parse(localStorage.getItem("ra_contents")||"[]");
-function persist(){localStorage.setItem("ra_clients",JSON.stringify(clients));localStorage.setItem("ra_contents",JSON.stringify(contents));render()}
-function go(id){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===id));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo(0,0);render()}
-function addClient(){let name=document.getElementById("newClient").value.trim();if(!name){alert("Informe o nome da empresa.");return}clients.push({id:Date.now(),name,contact:document.getElementById("newContact").value.trim(),briefing:"Pendente"});document.getElementById("newClient").value="";document.getElementById("newContact").value="";persist()}
-function addContent(){let title=document.getElementById("contentTitle").value.trim();if(!title){alert("Informe o título ou ideia.");return}contents.push({id:Date.now(),client:document.getElementById("contentClient").value,title,stage:document.getElementById("contentStage").value});document.getElementById("contentTitle").value="";persist()}
-function changeStage(id,value){let item=contents.find(x=>x.id===id);if(item){item.stage=value;persist()}}
-function render(){
- document.getElementById("clientCount").textContent=String(clients.length).padStart(2,"0");
- document.getElementById("taskCount").textContent=String(contents.length).padStart(2,"0");
- document.getElementById("pendingCount").textContent=String(contents.filter(c=>c.stage!=="Aprovado pelo diretor").length+1).padStart(2,"0");
- document.getElementById("clientsList").innerHTML=clients.map(c=>`<div class="card"><div class="row"><h3>${esc(c.name)}</h3><span class="pill">${esc(c.briefing||"Pendente")}</span></div><p>${esc(c.contact||"Contato ainda não informado")}</p></div>`).join("");
- document.getElementById("contentClient").innerHTML=clients.map(c=>`<option>${esc(c.name)}</option>`).join("");
- document.getElementById("contentList").innerHTML=contents.length?contents.map(c=>`<div class="card"><h3>${esc(c.title)}</h3><p>${esc(c.client)}</p><label>Etapa</label><select onchange="changeStage(${c.id},this.value)">${["Ideia","Em produção","Em revisão","Aguardando aprovação","Aprovado pelo diretor"].map(s=>`<option ${c.stage===s?"selected":""}>${s}</option>`).join("")}</select></div>`).join(""):'<div class="empty">Nenhum conteúdo cadastrado ainda.</div>';
- let waiting=contents.filter(c=>c.stage==="Aguardando aprovação");
- document.getElementById("approvalList").innerHTML=waiting.length?waiting.map(c=>`<div class="card"><h3>${esc(c.title)}</h3><p>${esc(c.client)}</p><button onclick="changeStage(${c.id},'Aprovado pelo diretor')">Aprovar como diretor</button><button class="secondary" onclick="changeStage(${c.id},'Em produção')">Solicitar ajustes</button></div>`).join(""):'<div class="empty">Nenhum conteúdo aguardando aprovação.</div>';
+let clientes=JSON.parse(localStorage.getItem("ra_clientes")||"null")||[
+{id:1,nome:"Suely Confecções",contato:"Projeto-piloto 001",briefing:"Pendente"}
+];
+let conteudos=JSON.parse(localStorage.getItem("ra_conteudos")||"[]");
+
+function salvar(){
+localStorage.setItem("ra_clientes",JSON.stringify(clientes));
+localStorage.setItem("ra_conteudos",JSON.stringify(conteudos));
+atualizar();
 }
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function exportData(){let blob=new Blob([JSON.stringify({clients,contents,exportedAt:new Date().toISOString()},null,2)],{type:"application/json"});let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ra-agency-backup.json";a.click();URL.revokeObjectURL(a.href)}
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
-render();
+function abrir(id){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
+window.scrollTo(0,0);
+atualizar();
+}
+function adicionarCliente(){
+let nome=document.getElementById("nomeCliente").value.trim();
+if(!nome){alert("Digite o nome da empresa");return;}
+clientes.push({id:Date.now(),nome,contato:document.getElementById("contatoCliente").value,briefing:"Pendente"});
+document.getElementById("nomeCliente").value="";
+document.getElementById("contatoCliente").value="";
+salvar();
+}
+function adicionarConteudo(){
+let nome=document.getElementById("nomeConteudo").value.trim();
+if(!nome){alert("Digite o nome do conteúdo");return;}
+conteudos.push({id:Date.now(),nome,cliente:document.getElementById("clienteConteudo").value,etapa:document.getElementById("etapaConteudo").value});
+document.getElementById("nomeConteudo").value="";
+salvar();
+}
+function mudarEtapa(id,etapa){
+let item=conteudos.find(c=>c.id===id);
+if(item){item.etapa=etapa;salvar();}
+}
+function atualizar(){
+document.getElementById("totalClientes").textContent=clientes.length;
+document.getElementById("totalConteudos").textContent=conteudos.length;
+document.getElementById("listaClientes").innerHTML=clientes.map(c=>`<div class="card"><h3>${seguro(c.nome)}</h3><p>${seguro(c.contato||"Contato não informado")}</p><span class="status">Briefing: ${seguro(c.briefing)}</span></div>`).join("");
+document.getElementById("clienteConteudo").innerHTML=clientes.map(c=>`<option>${seguro(c.nome)}</option>`).join("");
+document.getElementById("listaConteudos").innerHTML=conteudos.map(c=>`<div class="card"><h3>${seguro(c.nome)}</h3><p>${seguro(c.cliente)}</p><select onchange="mudarEtapa(${c.id},this.value)">${["Ideia","Em produção","Em revisão","Aguardando aprovação","Aprovado pelo diretor"].map(e=>`<option ${e===c.etapa?"selected":""}>${e}</option>`).join("")}</select></div>`).join("")||"<p>Nenhum conteúdo cadastrado.</p>";
+let pendentes=conteudos.filter(c=>c.etapa==="Aguardando aprovação");
+document.getElementById("listaAprovacoes").innerHTML=pendentes.map(c=>`<div class="card"><h3>${seguro(c.nome)}</h3><button class="action" onclick="mudarEtapa(${c.id},'Aprovado pelo diretor')">Aprovar como diretor</button></div>`).join("")||"<p>Nenhum conteúdo aguardando aprovação.</p>";
+}
+function seguro(t){return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js").catch(()=>{});}
+atualizar();
 </script>
-</body></html>
+
+<nav>
+<button class="active" data-id="inicio" onclick="abrir('inicio')">⌂<br>Início</button>
+<button data-id="clientes" onclick="abrir('clientes')">♙<br>Clientes</button>
+<button data-id="conteudo" onclick="abrir('conteudo')">▦<br>Conteúdo</button>
+<button data-id="agentes" onclick="abrir('agentes')">✧<br>Agentes</button>
+<button data-id="aprovacoes" onclick="abrir('aprovacoes')">✓<br>Aprovações</button>
+</nav>
+</body>
+</html>
